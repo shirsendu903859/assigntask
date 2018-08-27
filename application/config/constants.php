@@ -85,7 +85,17 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-define('ASSETS_URL', 'http://assistanttask.handmadewithloves.in/');
+
+if(ENVIRONMENT == 'production'){
+	define('ASSETS_URL', 'http://assistanttask.handmadewithloves.in/');
+}
+elseif(ENVIRONMENT == 'development'){
+	define('ASSETS_URL', 'http://localhost:8080/assistanttask/');
+	defined('ROOT_FOLDER')     OR define('ROOT_FOLDER', "");
+}
+else{
+	define('ASSETS_URL', '');
+}
 
 /*custom constants*/
 define('LOGO_UPLOAD_PATH', $_SERVER['DOCUMENT_ROOT'].'/assistanttask'.'/uploads/logo/');

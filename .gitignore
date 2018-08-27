@@ -32,3 +32,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 
 ## Sublime Text cache files
+index.php
+config.php
+constants.php
+database.php

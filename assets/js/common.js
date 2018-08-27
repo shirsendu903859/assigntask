@@ -968,9 +968,13 @@ $(document).ready(function(){
 	$(document).on('click', '.savesubservicemanagement', function(){
 		var allformdata = new FormData($('.managementform')[0]);
 		
-		var desc = CKEDITOR.instances.editor1.getData();
+		var overview = CKEDITOR.instances.editor1.getData();
+		var offerings = CKEDITOR.instances.editor2.getData();
+		var specialization = CKEDITOR.instances.editor3.getData();
 		
-		allformdata.append('description', desc);
+		allformdata.append('overview', overview);
+		allformdata.append('offerings', offerings);
+		allformdata.append('specialization', specialization);
 		
 		jQuery(".errormsg").hide();
 		jQuery.ajax({

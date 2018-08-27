@@ -1632,11 +1632,37 @@ class Admin extends CI_Controller {
 				}
 				else //for inserting user data in db
 				{
-					$this->form_validation->set_rules('title', 'Service Title', 'trim|required');
-					$this->form_validation->set_rules('description', 'Service Description', 'trim|required');
+					$this->form_validation->set_rules('title', 'Title', 'trim|required');
+					$this->form_validation->set_rules('description', 'Description', 'trim|required');
+					$this->form_validation->set_rules('overview', 'Overview', 'trim|required');
+					$this->form_validation->set_rules('offerings', 'Offering', 'trim|required');
+					$this->form_validation->set_rules('specialization', 'Specialization', 'trim|required');
 					if($this->form_validation->run() == TRUE) {
 						$inserdata = $imagenamearray = array();
-					
+						$post["serviceimage"] = "noimage.png";
+
+						if(!empty($_FILES) && isset($_FILES['image']) && !empty($_FILES['image']) && isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
+							$config['upload_path']          = SERVICE_UPLOAD_PATH;
+							$config['allowed_types']        = 'gif|jpg|png';
+							$config['max_size']             = 1000000;
+							$config['max_width']            = 1024000;
+							$config['max_height']           = 7680000;
+							$config['encrypt_name']         = TRUE;
+
+							$this->load->library('upload', $config);
+							if ( ! $this->upload->do_upload('serviceimage')) {
+								$error = array('error' => $this->upload->display_errors());
+								$response['success'] = 0;
+								$response['error'] = 1;
+								$response['msg'] = 'Sorry some error occured. Please try again later..!!'; 	                     
+							}
+							else {
+								$data = array('upload_data' => $this->upload->data());
+								$imagename = $data['upload_data']['file_name'];
+								$post["serviceimage"] = $imagename;
+							}
+						}
+						
 						$isInsert = $this->admin_model->subservicemanagementinsert($post);
 						if($isInsert) {
 							$response['success'] = 1;
