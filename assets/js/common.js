@@ -2090,10 +2090,14 @@ $(document).ready(function(){
 					$.toaster({ priority : 'error', title : 'Error', message : responce.msg});
 				} else {					
 					var data = responce.data;
-					
-					$(document).find('.edittitleen').val(data.title);
+					console.log(data);
+					$(document).find('.editTitle').val(data.title);
+					$(document).find('.editDescription').val(data.description);
+
 					$(document).find('.hiddenid').val(data.id);
-					CKEDITOR.instances['editor2'].setData(data.description);
+					CKEDITOR.instances['editor1'].setData(data.overview);
+					CKEDITOR.instances['editor2'].setData(data.offerings);
+					CKEDITOR.instances['editor3'].setData(data.specialization);
 					$('#editmodal').modal('show');
 				}
 			}

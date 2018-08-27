@@ -51,7 +51,7 @@
                   <div class="form-group col-md-12">
                     <label for="inputImage" class="col-sm-3 control-label">Service Image <span class="required">*</span></label>
                     <div class="col-sm-9">
-                    <input type="file" name="serviceimage" class="form-control" id="inputImage">
+                    <input type="file" name="image" class="form-control" id="inputImage">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
@@ -149,15 +149,39 @@
           <div class="box-body">
             <div class="row">
                   <div class="form-group col-md-12">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Service Title <span class="required">*</span></label>
+                    <label for="inputTitle" class="col-sm-3 control-label">Service Title <span class="required">*</span></label>
                     <div class="col-sm-9">
-                      <input type="text" name="title" class="form-control edittitleen" id="inputEmail3" placeholder="Sub Service Title English">
+                      <input type="text" name="title" class="form-control editTitle" id="inputTitle" placeholder="Service Title English">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Service Description <span class="required">*</span></label>
+                    <label for="inputDescription" class="col-sm-3 control-label">Service Description <span class="required">*</span></label>
                     <div class="col-sm-9">
-                      <textarea id="editor2" name="description" class="editdescriptionen" rows="10" cols="30"></textarea>
+                    <input type="text" name="description" class="form-control editDescription" id="inputDescription" placeholder="Service Description">
+                    </div>
+                  </div>
+                  <!-- <div class="form-group col-md-12">
+                    <label for="inputImage" class="col-sm-3 control-label">Service Image <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                    <input type="file" name="image" class="form-control editImage" id="inputImage">
+                    </div>
+                  </div> -->
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail3" class="col-sm-3 control-label"> Overview <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                      <textarea id="editor1" name="overview" class="editOverview" rows="10" cols="30"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail3" class="col-sm-3 control-label"> Offerings <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                      <textarea id="editor2" name="offerings" class="editOffer" rows="10" cols="30"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail3" class="col-sm-3 control-label"> Specialization <span class="required">*</span></label>
+                    <div class="col-sm-9">
+                      <textarea id="editor3" name="specialization" class="editSpecialization" rows="10" cols="30"></textarea>
                     </div>
                   </div>
                   <div class="clearfix"></div>

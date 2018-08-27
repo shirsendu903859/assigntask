@@ -1650,7 +1650,7 @@ class Admin extends CI_Controller {
 							$config['encrypt_name']         = TRUE;
 
 							$this->load->library('upload', $config);
-							if ( ! $this->upload->do_upload('serviceimage')) {
+							if ( ! $this->upload->do_upload('image')) {
 								$error = array('error' => $this->upload->display_errors());
 								$response['success'] = 0;
 								$response['error'] = 1;
