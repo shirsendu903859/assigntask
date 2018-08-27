@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>http://handmadewithloves.in/patcycon/</loc>
+  <lastmod>2018-06-27T18:23:31+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://handmadewithloves.in/patcycon/blog</loc>
+  <lastmod>2018-06-27T18:23:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://handmadewithloves.in/patcycon/project</loc>
+  <lastmod>2018-06-27T18:23:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://handmadewithloves.in/patcycon/blog-details/lorem-ipsum/5</loc>
+  <lastmod>2018-06-27T18:23:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://handmadewithloves.in/patcycon/blog-details/dolor-sit/6</loc>
+  <lastmod>2018-06-27T18:23:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://handmadewithloves.in/patcycon/blog-details/amet/7</loc>
+  <lastmod>2018-06-27T18:23:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
