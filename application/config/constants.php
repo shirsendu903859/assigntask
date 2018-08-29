@@ -87,10 +87,10 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 if(ENVIRONMENT == 'production'){
-	define('ASSETS_URL', 'http://localhost/assistanttask/');
+	define('ASSETS_URL', 'http://assistanttask.handmadewithloves.in/');
 }
 elseif(ENVIRONMENT == 'development'){
-	define('ASSETS_URL', 'http://localhost/assistanttask/');
+	define('ASSETS_URL', 'http://localhost:8080/assistanttask/');
 	defined('ROOT_FOLDER')     OR define('ROOT_FOLDER', "");
 }
 else{

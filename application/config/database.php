@@ -78,8 +78,8 @@ if(ENVIRONMENT == 'production'){
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
+		'username' => 'handmade_shir',
+		'password' => 'shirpayel123',
 		'database' => 'handmade_assistanttask',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
