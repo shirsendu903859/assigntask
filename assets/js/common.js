@@ -3279,8 +3279,12 @@ $(document).ready(function(){
 	/*for update the banner*/
 	$(document).on('click', '.editbannermanagement', function(){
 		var allformdata = new FormData($('.editbannerform')[0]);
-		var desc = CKEDITOR.instances.editor2.getData();
-		allformdata.append('description', desc);
+		/*var desc = CKEDITOR.instances.editor2.getData();
+		allformdata.append('description', desc);*/
+		var descen = CKEDITOR.instances.editor3.getData();
+		allformdata.append('texten', descen);
+		var descfr = CKEDITOR.instances.editor4.getData();
+		allformdata.append('textfr', descfr);
 		jQuery(".errormsg").hide();
 		jQuery.ajax({
 			type: "POST",

@@ -2154,7 +2154,8 @@ class Admin extends CI_Controller {
 					
 				}
 				
-				
+				$inserdata['texten'] = $post['texten'];
+				$inserdata['textfr'] = $post['textfr'];
 				$inserdata['page'] = $post['pageedit'];
 				
 					

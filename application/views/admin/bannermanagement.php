@@ -59,16 +59,16 @@
                     </select>
                   </div>
                 </div>
-                <div class="row" style="display:none;">
+                <div class="row">
                   <div class="col-md-3"> Banner Caption <strong>(English)</strong></div>
                   <div class="col-md-9 form-group">
-                    <textarea id="editor1" name="captionen" rows="10" cols="30">dd</textarea>
+                    <textarea id="editor1" name="texten" rows="10" cols="30"></textarea>
                   </div>
                 </div>
-                <div class="row" style="display:none;">
+                <div class="row">
                   <div class="col-md-3"> Banner Caption <strong>(French)</strong></div>
                   <div class="col-md-9 form-group">
-                    <textarea id="editor2" name="captionfr" rows="10" cols="30">jhh</textarea>
+                    <textarea id="editor2" name="textfr" rows="10" cols="30"></textarea>
                   </div>
                 </div>
                 <div class="checkbox">
@@ -174,13 +174,13 @@
                 </div>
               </div>
               <div class="clearfix"></div>
-              <div class="col-md-3" style="display:none;"> Banner Caption <strong>(English)</strong></div>
-              <div class="col-md-9 form-group" style="display:none;">
+              <div class="col-md-3"> Banner Caption <strong>(English)</strong></div>
+              <div class="col-md-9 form-group">
                 <textarea id="editor3" class="bannertextediten" name="texten" rows="10" cols="30"></textarea>
               </div>
               <div class="clearfix"></div>
-              <div class="col-md-3" style="display:none;"> Banner Caption <strong>(French)</strong></div>
-              <div class="col-md-9 form-group" style="display:none;">
+              <div class="col-md-3"> Banner Caption <strong>(French)</strong></div>
+              <div class="col-md-9 form-group">
                 <textarea id="editor4" class="bannertexteditfr" name="textfr" rows="10" cols="30"></textarea>
               </div>
               <div class="clearfix"></div>

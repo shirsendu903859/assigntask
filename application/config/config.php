@@ -26,10 +26,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$config['base_url'] = 'http://assistanttask.handmadewithloves.in/';
 
 if(ENVIRONMENT == 'production'){
-	$config['base_url'] = 'http://assistanttask.handmadewithloves.in/';
+	$config['base_url'] = 'http://localhost/assistanttask/';
 }
 elseif(ENVIRONMENT == 'development'){
-	$config['base_url'] = 'http://localhost:8080/assistanttask/';
+	$config['base_url'] = 'http://localhost/assistanttask/';
 }
 else{
 	$config['base_url'] = 'index.php';
