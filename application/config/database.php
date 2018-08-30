@@ -103,7 +103,7 @@ elseif(ENVIRONMENT == 'development'){
 		'hostname' => 'localhost',
 		'username' => 'root',
 		'password' => '',
-		'database' => 'handmade_assistanttask',
+		'database' => 'assigntask',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,

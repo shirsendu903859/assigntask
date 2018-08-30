@@ -148,6 +148,12 @@
     	<form class="editmanagementform" enctype="multipart/form-data">
           <div class="box-body">
             <div class="row">
+            <div class="form-group col-md-12">
+                    <label for="inputTitle" class="col-sm-3 control-label">Service Image </label>
+                    <div class="col-sm-9">
+                      <img src="" class="img-responsive editserviceimage" alt="Service Image Art" height="" />
+                    </div>
+                  </div>
                   <div class="form-group col-md-12">
                     <label for="inputTitle" class="col-sm-3 control-label">Service Title <span class="required">*</span></label>
                     <div class="col-sm-9">
@@ -160,12 +166,12 @@
                     <input type="text" name="description" class="form-control editServiceDescription" id="inputDescription" placeholder="Service Description">
                     </div>
                   </div>
-                  <!-- <div class="form-group col-md-12">
+                  <div class="form-group col-md-12">
                     <label for="inputImage" class="col-sm-3 control-label">Service Image <span class="required">*</span></label>
                     <div class="col-sm-9">
                     <input type="file" name="image" class="form-control editImage" id="inputImage">
                     </div>
-                  </div> -->
+                  </div>
                   <div class="form-group col-md-12">
                     <label for="inputEmail3" class="col-sm-3 control-label"> Overview <span class="required">*</span></label>
                     <div class="col-sm-9">
@@ -175,13 +181,13 @@
                   <div class="form-group col-md-12">
                     <label for="inputEmail3" class="col-sm-3 control-label"> Offerings <span class="required">*</span></label>
                     <div class="col-sm-9">
-                      <textarea id="editor2" name="offerings" class="editServiceOffer" rows="10" cols="30"></textarea>
+                      <textarea id="editor5" name="offerings" class="editServiceOffer" rows="10" cols="30"></textarea>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <label for="inputEmail3" class="col-sm-3 control-label"> Specialization <span class="required">*</span></label>
                     <div class="col-sm-9">
-                      <textarea id="editor3" name="specialization" class="editServiceSpecialization" rows="10" cols="30"></textarea>
+                      <textarea id="editor6" name="specialization" class="editServiceSpecialization" rows="10" cols="30"></textarea>
                     </div>
                   </div>
                   <div class="clearfix"></div>
