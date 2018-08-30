@@ -374,7 +374,7 @@ class Admin_model extends CI_Model {
 
 	public function changesubservicestatus($serviceid) {
 		if($serviceid != '') {
-			$currentstatus = $this->db->get_where('servicemanagement', array('id'=>$serviceid))->row_array();
+			$currentstatus = $this->db->get_where('subservicemanagement', array('id'=>$serviceid))->row_array();
 			if($currentstatus['status'] == 1) { $newstatus = 0; }
 			if($currentstatus['status'] == 0) { $newstatus = 1; }
 			$data = array('status'=>$newstatus);
