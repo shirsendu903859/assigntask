@@ -2095,8 +2095,8 @@ $(document).ready(function(){
 					$(document).find('.hiddenid').val(data.id);
 					$(document).find('.editServiceOverview').val(data.overview);					
 					CKEDITOR.instances['editor4'].setData(data.overview);
-					CKEDITOR.instances['editor2'].setData(data.offerings);
-					CKEDITOR.instances['editor3'].setData(data.specialization);
+					CKEDITOR.instances['editor5'].setData(data.offerings);
+					CKEDITOR.instances['editor6'].setData(data.specialization);
 					$('#editmodal').modal('show');
 				}
 			}
@@ -2454,9 +2454,15 @@ $(document).ready(function(){
 		var obj = $(this);
 		var allformdata = new FormData($('.editmanagementform')[0]);
 		
-		var desc = CKEDITOR.instances.editor2.getData();
+		//var desc = CKEDITOR.instances.editor2.getData();
+		var overview = CKEDITOR.instances.editor4.getData();
+		var Offer = CKEDITOR.instances.editor5.getData();
+		var specialization = CKEDITOR.instances.editor6.getData();
 		
-		allformdata.append('description', desc);
+		//allformdata.append('description', desc);
+		allformdata.append('overview', overview);
+		allformdata.append('offerings', Offer);
+		allformdata.append('specialization', specialization);
 		
 		allformdata.append('tag', 'edit');
 		allformdata.append('type', 'post');
@@ -3278,12 +3284,8 @@ $(document).ready(function(){
 	/*for update the banner*/
 	$(document).on('click', '.editbannermanagement', function(){
 		var allformdata = new FormData($('.editbannerform')[0]);
-		/*var desc = CKEDITOR.instances.editor2.getData();
-		allformdata.append('description', desc);*/
-		var descen = CKEDITOR.instances.editor3.getData();
-		allformdata.append('texten', descen);
-		var descfr = CKEDITOR.instances.editor4.getData();
-		allformdata.append('textfr', descfr);
+		var desc = CKEDITOR.instances.editor2.getData();
+		allformdata.append('description', desc);
 		jQuery(".errormsg").hide();
 		jQuery.ajax({
 			type: "POST",
