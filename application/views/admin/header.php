@@ -171,7 +171,11 @@
             <i class="fa fa-cogs"></i> <span>Service Management</span>
           </a>
         </li>
-        
+        <li class="<?php if($this->uri->segment(2) == 'plan-management') { echo 'active'; }?>">
+          <a href="<?php echo base_url('admin/plan-management'); ?>">
+            <i class="fa fa-cogs"></i> <span>Plan Management</span>
+          </a>
+        </li>
         <li class="<?php if($this->uri->segment(2) == 'offer') { echo 'active'; }?>">
           <a href="<?php echo base_url('admin/offer'); ?>">
             <i class="fa fa-cogs"></i> <span>Offer Management</span>

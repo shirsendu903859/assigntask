@@ -94,6 +94,7 @@ $route['admin/identity-validation'] = 'admin/identityvalidation';
 $route['admin/seo-management/(:any)'] = 'admin/seomanagement/$1';
 $route['admin/project-management'] = 'admin/projectmanagement';
 $route['admin/project-page-management'] = 'admin/projectpage';
+$route['admin/plan-management'] = 'plan';
 
 
 
