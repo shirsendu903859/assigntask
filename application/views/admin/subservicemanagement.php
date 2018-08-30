@@ -112,7 +112,8 @@
                       <?php } else { ?>
                       <span class="changeservicestatus pointer" title="Change Service Status" data-id=<?php echo $val['id'];?>><i class="fa fa-thumbs-o-down fa-2x statusicon" aria-hidden="true"></i></span>
                       <?php } ?>
-                      <span class="editsubservicedetails pointer" title="Edit Service Details" data-id="<?php echo $val['id']?>"><i class="fa fa-pencil-square-o fa-2x" style="color:#09F;" aria-hidden="true"></i></span> <span class="deleteservice pointer" title="Delete Service" data-id="<?php echo $val['id']?>"><i class="fa fa-trash-o fa-2x" style="color:#f00;" aria-hidden="true"></i></span></td>
+                      <span class="editsubservicedetails pointer" title="Edit Service Details" data-id="<?php echo $val['id']?>"><i class="fa fa-pencil-square-o fa-2x" style="color:#09F;" aria-hidden="true"></i></span> 
+                      <span class="deletesubservice pointer" title="Delete Service" data-id="<?php echo $val['id']?>"><i class="fa fa-trash-o fa-2x" style="color:#f00;" aria-hidden="true"></i></span></td>
                   </tr>
                   <?php } ?>
                   </tfoot>
@@ -148,12 +149,12 @@
     	<form class="editmanagementform" enctype="multipart/form-data">
           <div class="box-body">
             <div class="row">
-            <div class="form-group col-md-12">
+            <!-- <div class="form-group col-md-12">
                     <label for="inputTitle" class="col-sm-3 control-label">Service Image </label>
                     <div class="col-sm-9">
-                      <img src="" class="img-responsive editserviceimage" alt="Service Image Art" height="" />
+                      <img src="" class="img-responsive" alt="Service Image Art" height="" />
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group col-md-12">
                     <label for="inputTitle" class="col-sm-3 control-label">Service Title <span class="required">*</span></label>
                     <div class="col-sm-9">

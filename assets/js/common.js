@@ -1192,6 +1192,33 @@ $(document).ready(function(){
 		}
 		else { return false; }
 	});
+
+	$(document).on('click', '.deletesubservice', function(){
+		if (confirm("Are you sure you want to delete?")) {											
+			var obj = $(this);
+			var id = $(this).data('id');
+			jQuery.ajax({
+				type: "POST",
+				url: BASEURL + "sub-service-management",
+				data: { 
+						'tag' : 'delete', 
+						'id' : id 
+					  }, 
+				dataType: "json",
+				success: function(responce) {
+					var error = responce.error;
+					var success = responce.success;
+					if (success === 0) {
+						$.toaster({ priority : 'error', title : 'Error', message : responce.msg});
+					} else {
+						$.toaster({ priority : 'success', title : 'Success', message : responce.msg});
+						setTimeout(function(){ location.reload(); }, 1000);
+					}
+				}
+			});
+		}
+		else { return false; }
+	});
 	
 	$(document).on('click', '.deleteoffer', function(){
 		if (confirm("Are you sure you want to delete?")) {											
@@ -1492,6 +1519,38 @@ $(document).ready(function(){
 		jQuery.ajax({
 			type: "POST",
 			url: BASEURL + "service-management",
+			data: { 
+					'tag' : 'statuschange', 
+					'id' : id 
+				  }, 
+			dataType: "json",
+			success: function(responce) {
+				var error = responce.error;
+				var success = responce.success;
+				if (success === 0) {
+					$.toaster({ priority : 'error', title : 'Error', message : responce.msg});
+				} else {
+					if(responce.data == 1) { 
+						obj.children().first().removeClass('fa-thumbs-o-down');
+						obj.children().first().addClass('fa-thumbs-o-up');
+						$.toaster({ priority : 'success', title : 'Success', message : responce.msg});
+					}
+					if(responce.data == 0) { 
+						obj.children().first().removeClass('fa-thumbs-o-up');
+						obj.children().first().addClass('fa-thumbs-o-down');
+						$.toaster({ priority : 'success', title : 'Success', message : responce.msg});
+					}
+				}
+			}
+		});
+	});
+
+	$(document).on('click', '.changesubservicestatus', function(){
+		var obj = $(this);
+		var id = $(this).data('id');
+		jQuery.ajax({
+			type: "POST",
+			url: BASEURL + "sub-service-management",
 			data: { 
 					'tag' : 'statuschange', 
 					'id' : id 
@@ -2090,6 +2149,7 @@ $(document).ready(function(){
 					$.toaster({ priority : 'error', title : 'Error', message : responce.msg});
 				} else {					
 					var data = responce.data;
+					$(document).find('.editServiceTitle').val(data.title);
 					$(document).find('.editServiceTitle').val(data.title);
 					$(document).find('.editServiceDescription').val(data.description);
 					$(document).find('.hiddenid').val(data.id);

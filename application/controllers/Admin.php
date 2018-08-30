@@ -1545,21 +1545,21 @@ class Admin extends CI_Controller {
 			if($this->input->is_ajax_request()) {
 				if(isset($post['tag'])) {
 					if($post['tag'] == 'statuschange') { // for change the blog status
-						$isChange = $this->admin_model->changeservicestatus($post['id']);
+						$isChange = $this->admin_model->changesubservicestatus($post['id']);
 						$response['success'] = 1;
 						$response['error'] = 0;
 						$response['msg'] = 'Service status successfully changed';
 						$response['data'] = $isChange;
 					}
 					elseif($post['tag'] == 'delete') { //for delete blog
-						$isDelete = $this->admin_model->deleteservice($post['id']);
+						$isDelete = $this->admin_model->deletesubservice($post['id']);
 						if($isDelete) {
 							$response['success'] = 1;
 							$response['error'] = 0;
 							$response['msg'] = 'Service successfully deleted';
 						}
 						else {
-							$response['success'] = 0;
+							$response['success'] = 0; 
 							$response['error'] = 1;
 							$response['msg'] = 'Sorry some error occured. Please try again later..!!';					
 						}
@@ -1583,22 +1583,57 @@ class Admin extends CI_Controller {
 							$insertdata = array();
 							$imagenamearray = array();
 							
-							$id = $post['id'];
-							unset($post['id']);
-							unset($post['tag']);
-							unset($post['type']);
-							
-							$isUpdate = $this->admin_model->updatesubservicedetails($post, $id);
-							if($isUpdate) {
-								$response['success'] = 1;
-								$response['error'] = 0;
-								$response['msg'] = 'Service data successfully updated';
-							}
-							else {
+							$this->form_validation->set_rules('title','Title','required');
+							$this->form_validation->set_rules('description','Description','required');
+							$this->form_validation->set_rules('overview','Overview','required');
+							$this->form_validation->set_rules('offerings','Offerings','required');
+							$this->form_validation->set_rules('specialization','Specialization','required');
+
+							if($this->form_validation->run()){
+								$id = $post['id'];
+
+								if(!empty($_FILES) && isset($_FILES['image']) && !empty($_FILES['image']) && isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
+									$config['upload_path']          = SERVICE_UPLOAD_PATH;
+									$config['allowed_types']        = 'gif|jpg|png';
+									$config['max_size']             = 1000000;
+									$config['max_width']            = 1024000;
+									$config['max_height']           = 7680000;
+									$config['encrypt_name']         = TRUE;
+		
+									$this->load->library('upload', $config);
+									if ( ! $this->upload->do_upload('image')) {
+										$error = array('error' => $this->upload->display_errors());
+										$response['success'] = 0;
+										$response['error'] = 1;
+										$response['msg'] = 'Sorry some error occured. Please try again later..!!'; 	                     
+									}
+									else {
+										$data = array('upload_data' => $this->upload->data());
+										$imagename = $data['upload_data']['file_name'];
+										$post["serviceimage"] = $imagename;
+									}
+								}
+
+								unset($post['id']);
+								unset($post['tag']);
+								unset($post['type']);
+								unset($post['image']);
+								$isUpdate = $this->admin_model->updatesubservicedetails($post, $id);
+								if($isUpdate) {
+									$response['success'] = 1;
+									$response['error'] = 0;
+									$response['msg'] = 'Service data successfully updated';
+								}
+								else {
+									$response['success'] = 0;
+									$response['error'] = 1;
+									$response['msg'] = 'Sorry some error occured. Please try again later..!!';	
+								}
+							} else {
 								$response['success'] = 0;
 								$response['error'] = 1;
-								$response['msg'] = 'Sorry some error occured. Please try again later..!!';	
-							}
+								$response['msg'] = validation_errors();
+							}							
 						}
 					}
 					elseif($post['tag'] == 'fetchimage') { //for fetch the blog images to show in enlarger

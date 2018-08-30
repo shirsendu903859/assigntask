@@ -371,6 +371,18 @@ class Admin_model extends CI_Model {
 			return $newstatus;
 		}
 	}
+
+	public function changesubservicestatus($serviceid) {
+		if($serviceid != '') {
+			$currentstatus = $this->db->get_where('servicemanagement', array('id'=>$serviceid))->row_array();
+			if($currentstatus['status'] == 1) { $newstatus = 0; }
+			if($currentstatus['status'] == 0) { $newstatus = 1; }
+			$data = array('status'=>$newstatus);
+			$this->db->where('id', $serviceid);
+			$this->db->update('subservicemanagement', $data);
+			return $newstatus;
+		}
+	}
 	
 	public function changeofferstatus($serviceid) {
 		if($serviceid != '') {
@@ -391,6 +403,14 @@ class Admin_model extends CI_Model {
 			
 			$this->db->where('serviceid', $id);
 			$this->db->delete('serviceimage');
+			return true;
+		}
+	}
+
+	public function deletesubservice($id) {
+		if($id != '') {
+			$this->db->where('id', $id);
+			$this->db->delete('subservicemanagement');
 			return true;
 		}
 	}
