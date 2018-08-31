@@ -1,4 +1,4 @@
-var BASEURL = $(document).find('.base_url').val();
+var BASEURLCUSTOM = $(document).find('.base_url').val();
 var ASSETS_URL = $(document).find('.assets_url').val();
 var LOGO_UPLOAD_URL = ASSETS_URL+'uploads/logo/';
 var USER_IMAGE_UPLOAD_URL = ASSETS_URL+'uploads/user/';
@@ -14,7 +14,7 @@ $(document).ready(function(){
 		jQuery(".errormsg").hide();
 		jQuery.ajax({
 			type: "POST",
-			url: BASEURL + "plan/planmanagement",
+			url: BASEURLCUSTOM + "plan/planmanagement",
 			data: allformdata,
 			mimeType: "multipart/form-data",
 			contentType: false,
@@ -45,7 +45,7 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		jQuery.ajax({
 			type: "POST",
-			url: BASEURL + "plan/planmanagementfetchdatabyid/"+id,
+			url: BASEURLCUSTOM + "plan/planmanagementfetchdatabyid/"+id,
 			mimeType: "multipart/form-data",
 			contentType: false,
 			cache: false,
@@ -76,7 +76,7 @@ $(document).ready(function(){
 		jQuery(".errormsg").hide();
 		jQuery.ajax({
 			type: "POST",
-			url: BASEURL + "plan/updateplanmanagement",
+			url: BASEURLCUSTOM + "plan/updateplanmanagement",
 			data: allformdata,
 			mimeType: "multipart/form-data",
 			contentType: false,
@@ -109,7 +109,7 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		jQuery.ajax({
 			type: "POST",
-			url: BASEURL + "plan/planmanagementchangestatus/"+id,
+			url: BASEURLCUSTOM + "plan/planmanagementchangestatus/"+id,
 			mimeType: "multipart/form-data",
 			contentType: false,
 			cache: false,
@@ -148,7 +148,7 @@ $(document).ready(function(){
 		var id = $(this).data('id');
 		jQuery.ajax({
 			type: "POST",
-			url: BASEURL + "plan/planmanagementdelete/"+id,
+			url: BASEURLCUSTOM + "plan/planmanagementdelete/"+id,
 			mimeType: "multipart/form-data",
 			contentType: false,
 			cache: false,
