@@ -3,9 +3,9 @@ if (!defined('BASEPATH')) exit ('No direct script access allowed');
 
 class Plan_model extends CI_Model {
 
-	public function bannermanagementinsert($insertdata) {
+	public function planmanagementinsert($insertdata) {
 		if(!empty($insertdata)) {
-			$this->db->insert('bannermanagement', $insertdata);
+			$this->db->insert('planmanagement', $insertdata);
 		}
 		return true;
 	}
@@ -15,19 +15,19 @@ class Plan_model extends CI_Model {
 		return $data;
 	}
 	
-	public function bannermanagementfetchdatabyid($bannerid) {
-		$data = $this->db->get_where('bannermanagement', array('id'=>$bannerid))->row_array();
+	public function planmanagementfetchdatabyid($id) {
+		$data = $this->db->get_where('planmanagement', array('id'=>$id))->row_array();
 		return $data;
 	}
 	
-	public function bannermanagementupdate($data, $id) {
+	public function planmanagementupdate($data, $id) {
 		$this->db->where('id', $id);
-		$this->db->update('bannermanagement', $data);
+		$this->db->update('planmanagement', $data);
 		return true;
 	}
 	
-	public function bannermanagementchangestatus($bannerid) {
-		$checkstatus = $this->db->get_where('bannermanagement', array('id'=>$bannerid))->row_array();
+	public function planmanagementchangestatus($id) {
+		$checkstatus = $this->db->get_where('planmanagement', array('id'=>$id))->row_array();
 		$currentstatus = $checkstatus['status'];
 		/*if($currentstatus == 1) { 
 			$newstatus = 0; $newclass = 0;
@@ -47,15 +47,15 @@ class Plan_model extends CI_Model {
 		if($currentstatus == 1) { $newstatus = 0; $newclass = 0; }
 		if($currentstatus == 0) { $newstatus = 1; $newclass = 1; }
 		
-		$this->db->where('id',$bannerid);
-		$this->db->update('bannermanagement', array('status'=>$newstatus));
+		$this->db->where('id',$id);
+		$this->db->update('planmanagement', array('status'=>$newstatus));
 		
 		return $newclass;		
 	}
 	
-	public function bannermanagementdelete($bannerid) {
-		$this->db->where(array('id'=>$bannerid));
-		$this->db->delete('bannermanagement');
+	public function planmanagementdelete($id) {
+		$this->db->where(array('id'=>$id));
+		$this->db->delete('planmanagement');
 		return true;
 	}
 	

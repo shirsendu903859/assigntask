@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="box-body pad table-responsive addlogodialougebox" style="display:none;">
-            <form class="managementform" enctype="multipart/form-data">
+            <form class="planmanagementform" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="row">
                   <div class="form-group col-md-12">
@@ -57,7 +57,7 @@
                     <label for="inputEmail3" class="col-sm-3 control-label">Plan Type <span class="required">*</span></label>
                     <div class="col-sm-9">
                       <div class="form-group">
-                    <select class="form-control" name="page">
+                    <select class="form-control" name="plantype">
                       <option value="">Choose Subscription</option>
                       <option value="Weekly">Weekly</option>
                       <option value="Monthly">Monthly</option>
@@ -105,13 +105,15 @@
                     <td><?php echo $val['plan_title'];?></td>
                     <td><?php echo $val['plan_details'];?></td>
                     <td><?php echo $val['plan_price'];?></td>
-                    <td><?php echo $val['plan_type'];?></td>
+                    <td><?php echo $val['plan_duration'];?></td>
                     <td width="15%"><?php if($val['status'] == 1) { ?>
                       <span class="changeplanstatus pointer" title="Change Plan Status" data-id=<?php echo $val['id'];?>><i class="fa fa-thumbs-o-up fa-2x statusicon" aria-hidden="true"></i></span>
                       <?php } else { ?>
                       <span class="changeplanstatus pointer" title="Change Plan Status" data-id=<?php echo $val['id'];?>><i class="fa fa-thumbs-o-down fa-2x statusicon" aria-hidden="true"></i></span>
                       <?php } ?>
-                      <span class="editplandetails pointer" title="Edit Plan Details" data-id="<?php echo $val['id']?>"><i class="fa fa-pencil-square-o fa-2x" style="color:#09F;" aria-hidden="true"></i></span> <span class="deleteservice pointer" title="Delete Service" data-id="<?php echo $val['id']?>"><i class="fa fa-trash-o fa-2x" style="color:#f00;" aria-hidden="true"></i></span></td>
+                    </td>
+                    <td>
+                      <span class="editplandetails pointer" title="Edit Plan Details" data-id="<?php echo $val['id']?>"><i class="fa fa-pencil-square-o fa-2x" style="color:#09F;" aria-hidden="true"></i></span> <span class="deleteplan pointer" title="Delete Plan" data-id="<?php echo $val['id']?>"><i class="fa fa-trash-o fa-2x" style="color:#f00;" aria-hidden="true"></i></span></td>
                   </tr>
                   <?php } ?>
                   </tfoot>
@@ -144,32 +146,32 @@
         <h4 class="modal-title">Edit Plan Details</h4>
       </div>
       <div class="modal-body" style="height:300px;">
-      <form class="editmanagementform" enctype="multipart/form-data">
+      <form class="editplanmanagementform" enctype="multipart/form-data">
           <div class="box-body">
             <div class="row">
                   <div class="form-group col-md-12">
                     <label for="inputEmail3" class="col-sm-3 control-label">Plan Title<span class="required">*</span></label>
                     <div class="col-sm-9">
-                      <input type="text" name="titleen" class="form-control" id="inputEmail3" placeholder="Plan Title English">
+                      <input type="text" name="titleen" class="form-control plantitle" id="inputEmail3" placeholder="Plan Title English">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <label for="inputEmail3" class="col-sm-3 control-label">Plan Details <span class="required">*</span></label>
                     <div class="col-sm-9">
-                      <textarea id="editor1" name="descriptionen" rows="10" cols="30"></textarea>
+                      <textarea id="editor2" name="descriptionen" rows="10" cols="30"></textarea>
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <label for="inputEmail3" class="col-sm-3 control-label">Plan Price <span class="required">*</span></label>
                     <div class="col-sm-9">
-                       <input type="text" name="planprice" class="form-control" id="inputEmail3" placeholder="Plan Price">
+                       <input type="text" name="planprice" class="form-control planprice" id="inputEmail3" placeholder="Plan Price">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
                     <label for="inputEmail3" class="col-sm-3 control-label">Plan Type <span class="required">*</span></label>
                     <div class="col-sm-9">
                       <div class="form-group">
-                    <select class="form-control" name="page">
+                    <select class="form-control plantype" name="plantype">
                       <option value="">Choose Subscription</option>
                       <option value="Weekly">Weekly</option>
                       <option value="Monthly">Monthly</option>
@@ -181,8 +183,8 @@
                   <div class="clearfix"></div>
                 </div>
             <div class="checkbox">
-              <input type="hidden" name="id" class="hiddenid" />
-              <button type="button" class="btn btn-primary pull-right editservicemanagement"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+              <input type="hidden" name="hiddeneditplanid" class="hiddeneditplanid" />
+              <button type="button" class="btn btn-primary pull-right editplanmanagement"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
               <div class="ajaxloading"><img src="<?php echo ASSETS_URL.'assets/images/ajaxloading.gif';?>" class="ajaxloadingimage" /></div>
               <div class="errormsg alert alert-danger" style="display:none;"></div>
               <div class="successmsg alert alert-success" style="display:none;"></div>

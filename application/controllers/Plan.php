@@ -25,92 +25,64 @@ class Plan extends CI_Controller {
 		}
 	}
 		
-	public function pricemanagement() {
+	public function planmanagement() {
 		$sessdata = $this->session->all_userdata();
 		if(isset($sessdata['adminsessdata']) || !empty($sessdata['adminsessdata'])) {
 			$post = $this->input->post();
 			if(empty($post)) {
-				$data['banner'] = $this->admin_model->bannermanagementfetchdata();
-				$data['page'] = $this->admin_model->allpagelist();
+				$data['banner'] = $this->plan_model->planmanagementfetchdata();
 				$this->load->view('admin/header');
-				$this->load->view('admin/bannermanagement', $data);
+				$this->load->view('admin/planmanagement', $data);
 				$this->load->view('admin/footer');
 			}
 			else {				
 				$inserdata = array();
-				if(!empty($_FILES) && isset($_FILES['image']) && !empty($_FILES['image']) && isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
-					$this->form_validation->set_rules('page', 'Choosing Page', 'trim|required');
-					if($this->form_validation->run() == FALSE) {
-						$response['success'] = 0;
-						$response['error'] = 1;
-						$response['msg'] = 'Please Choose an page to apply the banner';
-						
-						echo json_encode($response);
-						die();
-					}
-					
-					
-					$config['upload_path']          = BANNER_UPLOAD_PATH;
-					$config['allowed_types']        = 'gif|jpg|png';
-					$config['max_size']             = 1000000;
-					$config['max_width']            = 1024000;
-					$config['max_height']           = 7680000;
-					$config['encrypt_name']         = TRUE;
-
-               		$this->load->library('upload', $config);
-
-                	if ( ! $this->upload->do_upload('image')) {
-                        $error = array('error' => $this->upload->display_errors());
-						$response['success'] = 0;
-						$response['error'] = 1;
-						$response['msg'] = 'Sorry some error occured. Please try again later..!!'; 	                     
-                	}
-                	else {
-                        $data = array('upload_data' => $this->upload->data());
-						$imagename = $data['upload_data']['file_name'];
-						$inserdata['imagename'] = $imagename;
-					}
-					
-					$inserdata['texten'] = $post['texten'];
-					$inserdata['textfr'] = $post['textfr'];
-					$inserdata['page'] = $post['page'];
-					
-					$isInsert = $this->admin_model->bannermanagementinsert($inserdata);
-					if($isInsert) {
-						$response['success'] = 1;
-						$response['error'] = 0;
-						$response['msg'] = 'Banner successfully uploaded';
-					}
-					else {
-						$response['success'] = 0;
-						$response['error'] = 1;
-						$response['msg'] = 'Sorry some error occured. Please try again later..!!';
-					}
-				}
-				else
-				{
+				$this->form_validation->set_rules('titleen', 'Plan Title', 'trim|required');
+				$this->form_validation->set_rules('descriptionen', 'Plan Description', 'trim|required');
+				$this->form_validation->set_rules('planprice', 'Plan Price', 'trim|required|is_numeric');
+				$this->form_validation->set_rules('plantype', 'Plan Type', 'trim|required');
+				if($this->form_validation->run() == FALSE) {
 					$response['success'] = 0;
 					$response['error'] = 1;
-					$response['msg'] = 'Please upload an image to proceed';
+					$response['msg'] = 'Please enter all the required fields with valid data.';
+					echo json_encode($response);
+					die();
+				}				
+				$inserdata['plan_title'] = $post['titleen'];
+				$inserdata['plan_price'] = $post['planprice'];
+				$inserdata['plan_duration'] = $post['plantype'];
+				$inserdata['plan_details'] = $post['descriptionen'];
+				$inserdata['status'] = 1;
+				$isInsert = $this->plan_model->planmanagementinsert($inserdata);
+				if($isInsert) {
+					$response['success'] = 1;
+					$response['error'] = 0;
+					$response['msg'] = 'Plan successfully added';
 				}
-				
-				echo json_encode($response);
-				exit(0);
+				else {
+					$response['success'] = 0;
+					$response['error'] = 1;
+					$response['msg'] = 'Sorry some error occured. Please try again later..!!';
+				}
 			
-			}
+			
+			echo json_encode($response);
+			exit(0);
+		
+		}
 		}
 		else {
 			redirect(base_url('admin/login'));
 		}
 	}
 	
-	public function bannermanagementfetchdatabyid($bannerid) {
-		$bannerdata = $this->admin_model->bannermanagementfetchdatabyid($bannerid);
-		if(!empty($bannerdata)) {
+	public function planmanagementfetchdatabyid($id) {
+		$plandata = $this->plan_model->planmanagementfetchdatabyid($id);
+		if(!empty($plandata)) {
 			$response['success'] = 1;
 			$response['error'] = 0;
 			$response['msg'] = 'Successfully fetched';
-			$response['data'] = $bannerdata;
+			$response['data'] = $plandata;
 		}
 		else {
 			$response['success'] = 0;
@@ -121,44 +93,31 @@ class Plan extends CI_Controller {
 		exit(0);
 	}
 	
-	public function updatebannermanagement() {
+	public function updateplanmanagement() {
 		if($this->input->is_ajax_request()) {
 			$post = $this->input->post();
 			if(!empty($post)) {
-				if(!empty($_FILES) && isset($_FILES['bannerimage']) && !empty($_FILES['bannerimage']) && isset($_FILES['bannerimage']['name']) && $_FILES['bannerimage']['name'] != '') {
-					$config['upload_path']          = BANNER_UPLOAD_PATH;
-					$config['allowed_types']        = 'gif|jpg|png';
-					$config['max_size']             = 1000000;
-					$config['max_width']            = 1024000;
-					$config['max_height']           = 7680000;
-					$config['encrypt_name']         = TRUE;
-
-               		$this->load->library('upload', $config);
-
-                	if ( ! $this->upload->do_upload('bannerimage')) {
-                        $error = array('error' => $this->upload->display_errors());
-						$response['success'] = 0;
-						$response['error'] = 1;
-						$response['msg'] = 'Sorry some error occured. Please try again later..!!'; 	                     
-                	}
-					else {
-						$data = array('upload_data' => $this->upload->data());
-						$imagename = $data['upload_data']['file_name'];
-						$inserdata['imagename'] = $imagename;
-					}
-					
+				$inserdata = array();
+				$this->form_validation->set_rules('titleen', 'Plan Title', 'trim|required');
+				$this->form_validation->set_rules('descriptionen', 'Plan Description', 'trim|required');
+				$this->form_validation->set_rules('planprice', 'Plan Price', 'trim|required|is_numeric');
+				$this->form_validation->set_rules('plantype', 'Plan Type', 'trim|required');
+				if($this->form_validation->run() == FALSE) {
+					$response['success'] = 0;
+					$response['error'] = 1;
+					$response['msg'] = 'Please enter all the required fields with valid data.';
+					echo json_encode($response);
+					die();
 				}
-				
-				$inserdata['texten'] = $post['texten'];
-				$inserdata['textfr'] = $post['textfr'];
-				$inserdata['page'] = $post['pageedit'];
-				
-					
-				$isupdate = $this->admin_model->bannermanagementupdate($inserdata, $post['hiddeneditbannerid']);
+				$inserdata['plan_title'] = $post['titleen'];
+				$inserdata['plan_price'] = $post['planprice'];
+				$inserdata['plan_duration'] = $post['plantype'];
+				$inserdata['plan_details'] = $post['descriptionen'];
+				$isupdate = $this->plan_model->planmanagementupdate($inserdata, $post['hiddeneditplanid']);
 				if($isupdate) {
 					$response['success'] = 1;
 					$response['error'] = 0;
-					$response['msg'] = 'Banner successfully uploaded';
+					$response['msg'] = 'Plan successfully updated';
 				}
 				else {
 					$response['success'] = 0;
@@ -179,13 +138,13 @@ class Plan extends CI_Controller {
 		}
 	}
 	
-	public function bannermanagementchangestatus($bannerid) {
+	public function planmanagementchangestatus($id) {
 		if($this->input->is_ajax_request()) {
-			$isupdate = $this->admin_model->bannermanagementchangestatus($bannerid);
+			$isupdate = $this->plan_model->planmanagementchangestatus($id);
 			/*if($isupdate) {*/
 				$response['success'] = 1;
 				$response['error'] = 0;
-				$response['msg'] = 'Banner successfully uploaded';
+				$response['msg'] = 'Plan status successfully updated';
 				$response['data'] = $isupdate;
 			/*}
 			else {
@@ -201,13 +160,13 @@ class Plan extends CI_Controller {
 		}
 	}
 	
-	public function bannermanagementdelete($bannerid) {
+	public function planmanagementdelete($id) {
 		if($this->input->is_ajax_request()) {
-			$isdelete = $this->admin_model->bannermanagementdelete($bannerid);
+			$isdelete = $this->plan_model->planmanagementdelete($id);
 			if($isdelete) {
 				$response['success'] = 1;
 				$response['error'] = 0;
-				$response['msg'] = 'Banner successfully deleted';
+				$response['msg'] = 'Plan successfully deleted';
 			}
 			else {
 				$response['success'] = 0;

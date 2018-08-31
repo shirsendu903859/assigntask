@@ -63,4 +63,5 @@
 <script src="<?php echo ASSETS_URL.'assets/'; ?>bower_components/ckeditor/ckeditor.js"></script>
 <!--custom added js-->
 <script src="<?php echo ASSETS_URL.'assets/'; ?>js/common.js"></script>
+<script src="<?php echo ASSETS_URL.'assets/'; ?>js/custom.js"></script>
 </body></html>
